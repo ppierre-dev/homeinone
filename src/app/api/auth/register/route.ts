@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { hashPassword } from '@/lib/password'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: NextRequest) {
   let body: unknown
   try {
