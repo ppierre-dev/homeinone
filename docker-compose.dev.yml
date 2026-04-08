@@ -1,0 +1,24 @@
+services:
+  db:
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+
+  redis:
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+
+  app:
+    build:
+      target: deps
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+    volumes:
+      # Mount source for hot reload
+      - .:/app
+      # Preserve node_modules from the container
+      - /app/node_modules
+      # Preserve .next build cache
+      - /app/.next
+    ports:
+      - "${APP_PORT:-3000}:3000"

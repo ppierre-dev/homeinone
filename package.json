@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "docker:build": "docker compose build",
+    "docker:down": "docker compose down"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
