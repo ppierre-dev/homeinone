@@ -1,51 +1,24 @@
 @import "tailwindcss";
 
 /* ============================================================
-   HomeInOne — Design Tokens (Tailwind CSS v4)
-   ============================================================ */
-
-@theme {
-  /* --- Couleurs principales --- */
-  --color-primary: #4a7c59;
-  --color-primary-dark: #6baf7b;
-
-  /* --- Couleurs modules --- */
-  --color-module-agenda: #4a7c59;
-  --color-module-notes: #e67e22;
-  --color-module-logement: #2980b9;
-  --color-module-vehicules: #8e44ad;
-  --color-module-inventaire: #16a085;
-
-  /* --- Fond --- */
-  --color-background: #fafaf8;
-  --color-background-dark: #141413;
-
-  /* --- Typographie --- */
-  --font-display: var(--font-display-var);
-  --font-sans: var(--font-sans-var);
-  --font-mono: var(--font-mono-var);
-
-  /* --- Border radius --- */
-  --radius-btn: 10px;
-  --radius-card: 14px;
-  --radius-modal: 20px;
-
-  /* --- Shadows --- */
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
-
-  /* --- Zones de tap mobile (min 44×44px) --- */
-  --tap-target-size: 44px;
-}
-
-/* ============================================================
    CSS Variables — Thème light (défaut)
    ============================================================ */
 
 :root {
   --background: #fafaf8;
   --foreground: #1a1a18;
+  --foreground-muted: #6b7280;
   --primary: #4a7c59;
   --primary-foreground: #ffffff;
+  --card: #ffffff;
+  --card-border: #e5e7eb;
+
+  /* Modules */
+  --module-agenda: #4a7c59;
+  --module-notes: #e67e22;
+  --module-logement: #2980b9;
+  --module-vehicules: #8e44ad;
+  --module-inventaire: #16a085;
 }
 
 /* ============================================================
@@ -56,16 +29,54 @@
   :root {
     --background: #141413;
     --foreground: #f0f0ee;
+    --foreground-muted: #9ca3af;
     --primary: #6baf7b;
     --primary-foreground: #0f1f14;
+    --card: #1f1f1d;
+    --card-border: #2d2d2b;
   }
 }
 
 .dark {
   --background: #141413;
   --foreground: #f0f0ee;
+  --foreground-muted: #9ca3af;
   --primary: #6baf7b;
   --primary-foreground: #0f1f14;
+  --card: #1f1f1d;
+  --card-border: #2d2d2b;
+}
+
+/* ============================================================
+   Tailwind @theme inline — référence les CSS variables
+   (les utilitaires comme bg-background, text-foreground
+    génèrent var(--background) et respectent le dark mode)
+   ============================================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+
+  --color-module-agenda: var(--module-agenda);
+  --color-module-notes: var(--module-notes);
+  --color-module-logement: var(--module-logement);
+  --color-module-vehicules: var(--module-vehicules);
+  --color-module-inventaire: var(--module-inventaire);
+
+  --font-display: var(--font-display-var);
+  --font-sans: var(--font-sans-var);
+  --font-mono: var(--font-mono-var);
+
+  --radius-btn: 10px;
+  --radius-card: 14px;
+  --radius-modal: 20px;
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--card-border);
 }
 
 /* ============================================================

@@ -64,7 +64,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="bg-white dark:bg-foreground/5 rounded-[14px] shadow-card p-8">
+    <div className="bg-card border border-card-border rounded-[14px] shadow-card p-8">
       <h2 className="font-display text-2xl text-foreground mb-6">Créer un compte</h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">

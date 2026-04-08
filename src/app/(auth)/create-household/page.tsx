@@ -19,7 +19,7 @@ export default function CreateHouseholdPage() {
 
   if (status === 'loading' || status === 'unauthenticated') {
     return (
-      <div className="bg-white dark:bg-foreground/5 rounded-[14px] shadow-card p-8 text-center">
+      <div className="bg-card border border-card-border rounded-[14px] shadow-card p-8 text-center">
         <p className="text-sm text-foreground/60">Chargement...</p>
       </div>
     )
@@ -51,7 +51,7 @@ export default function CreateHouseholdPage() {
   }
 
   return (
-    <div className="bg-white dark:bg-foreground/5 rounded-[14px] shadow-card p-8">
+    <div className="bg-card border border-card-border rounded-[14px] shadow-card p-8">
       <h2 className="font-display text-2xl text-foreground mb-2">Créer votre foyer</h2>
       <p className="text-sm text-foreground/60 mb-6">
         Bienvenue {session?.user?.name ?? ''} ! Donnez un nom à votre foyer pour commencer.
