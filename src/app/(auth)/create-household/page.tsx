@@ -47,9 +47,8 @@ export default function CreateHouseholdPage() {
       return
     }
 
-    // Refresh the JWT so householdId is available immediately
-    await update()
-    router.push('/dashboard')
+    // Full page reload to bypass Next.js Router Cache and get fresh session
+    window.location.href = '/dashboard'
   }
 
   return (
