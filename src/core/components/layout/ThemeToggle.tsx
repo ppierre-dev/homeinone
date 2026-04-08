@@ -23,7 +23,9 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
 
   // Évite les erreurs d'hydratation : on ne rend le contenu réel qu'après montage
+  // (pattern recommandé par next-themes pour la détection côté client)
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ImgHTMLAttributes, useState } from "react";
+import { type ImgHTMLAttributes, useState } from "react";
 
 export type AvatarSize = "sm" | "md" | "lg";
 

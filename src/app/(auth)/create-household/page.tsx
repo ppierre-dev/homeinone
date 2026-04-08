@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export default function CreateHouseholdPage() {
-  const { data: session, status, update } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
   const [name, setName] = useState('')
   const [error, setError] = useState<string | null>(null)

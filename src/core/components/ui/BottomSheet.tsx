@@ -4,9 +4,9 @@ import {
   useEffect,
   useRef,
   useCallback,
-  ReactNode,
-  KeyboardEvent,
-  PointerEvent,
+  type ReactNode,
+  type KeyboardEvent,
+  type PointerEvent,
 } from "react";
 import { createPortal } from "react-dom";
 

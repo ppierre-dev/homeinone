@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { type HTMLAttributes } from "react";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {}
 export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, useCallback, DragEvent, ChangeEvent } from "react"
+import { useRef, useState, useCallback, type DragEvent, type ChangeEvent } from "react"
 
 export interface UploadResult {
   url: string
