@@ -19,5 +19,10 @@ services:
       - /app/node_modules
       # Preserve .next build cache
       - /app/.next
+      # Upload directory
+      - uploads_data:/uploads
     ports:
       - "${APP_PORT:-3000}:3000"
+
+volumes:
+  uploads_data:
