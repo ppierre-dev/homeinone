@@ -72,6 +72,23 @@
     "vehicles": "Vehicles",
     "inventory": "Inventory"
   },
+  "calendar": {
+    "title": "Calendar",
+    "today": "Today",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "noEvents": "No events",
+    "loading": "Loading...",
+    "errorLoading": "Failed to load events.",
+    "close": "Close",
+    "detail": {
+      "dates": "Dates",
+      "location": "Location",
+      "description": "Description",
+      "assignees": "Assigned members"
+    }
+  },
   "header": {
     "pageTitles": {
       "dashboard": "Dashboard",

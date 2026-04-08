@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import SessionProvider from "@/core/providers/SessionProvider";
 import { ThemeProvider } from "@/core/providers/ThemeProvider";
+import { QueryProvider } from "@/core/providers/QueryProvider";
 import "./globals.css";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -70,7 +71,9 @@ export default async function RootLayout({
             client components that call useTranslations(). */}
         <NextIntlClientProvider>
           <ThemeProvider>
-            <SessionProvider>{children}</SessionProvider>
+            <QueryProvider>
+              <SessionProvider>{children}</SessionProvider>
+            </QueryProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
