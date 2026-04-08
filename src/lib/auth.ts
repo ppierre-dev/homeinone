@@ -74,13 +74,27 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token
     },
     async session({ session, token }) {
+      let householdId = (token.householdId as string | null) ?? null
+      let role = (token.role as string | null) ?? null
+
+      // If token has no householdId, fetch from DB — handles the case where
+      // the household was created after the JWT was issued (register flow)
+      if (!householdId && token.id) {
+        const membership = await prisma.householdMember.findFirst({
+          where: { userId: token.id as string },
+          orderBy: { joinedAt: 'asc' },
+        })
+        householdId = membership?.householdId ?? null
+        role = membership?.role ?? null
+      }
+
       return {
         ...session,
         user: {
           ...session.user,
           id: token.id as string,
-          householdId: (token.householdId as string | null) ?? null,
-          role: (token.role as string | null) ?? null,
+          householdId,
+          role,
         },
       }
     },
