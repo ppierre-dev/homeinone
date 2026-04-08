@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/lib/auth'
+import { getToken } from 'next-auth/jwt'
 import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
-  const session = await auth()
+  const token = await getToken({ req: request, secret: process.env.AUTH_SECRET })
+  const userId = token?.sub
 
-  if (!session?.user?.id) {
+  if (!userId) {
     return NextResponse.json(
       { error: { code: 'UNAUTHORIZED', message: 'Authentification requise' } },
       { status: 401 }
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
       name: trimmedName,
       members: {
         create: {
-          userId: session.user.id,
+          userId,
           role: 'OWNER',
         },
       },

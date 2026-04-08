@@ -55,21 +55,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user, trigger }) {
-      // On sign-in, `user` is populated — persist extra fields into the token
+    async jwt({ token, user }) {
+      // On sign-in, persist extra fields from the authorize() return value
       if (user) {
-        token.id = user.id
         token.householdId = (user as { householdId?: string | null }).householdId ?? null
         token.role = (user as { role?: string | null }).role ?? null
       }
-      // On explicit update() call (e.g. after household creation), re-fetch from DB
-      if (trigger === 'update' && token.id) {
+      // If householdId is missing (new user who just created their household),
+      // fetch it from DB — token.sub is always set by NextAuth from user.id
+      if (!token.householdId && token.sub) {
         const membership = await prisma.householdMember.findFirst({
-          where: { userId: token.id as string },
+          where: { userId: token.sub },
           orderBy: { joinedAt: 'asc' },
         })
-        token.householdId = membership?.householdId ?? null
-        token.role = membership?.role ?? null
+        if (membership) {
+          token.householdId = membership.householdId
+          token.role = membership.role
+        }
       }
       return token
     },
@@ -79,8 +81,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       // token.sub is the standard NextAuth JWT user identifier
       const userId = (token.id as string | null) ?? token.sub ?? null
-
-      console.log('[session callback] householdId in token:', householdId, '| userId:', userId)
 
       // If token has no householdId, fetch from DB — handles the case where
       // the household was created after the JWT was issued (register flow)

@@ -1,11 +1,15 @@
 import { getRequestConfig } from 'next-intl/server'
+import { headers } from 'next/headers'
 import { routing } from './routing'
-import { hasLocale } from 'next-intl'
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  const requested = await requestLocale
-  const locale = hasLocale(routing.locales, requested)
-    ? requested
+export default getRequestConfig(async () => {
+  const headersList = await headers()
+  const acceptLanguage = headersList.get('accept-language') ?? ''
+
+  // Parse the first preferred language tag (e.g. "fr-FR,fr;q=0.9" → "fr")
+  const preferred = acceptLanguage.split(',')[0]?.split('-')[0]?.split(';')[0]?.trim() ?? ''
+  const locale = routing.locales.includes(preferred as 'fr' | 'en')
+    ? (preferred as 'fr' | 'en')
     : routing.defaultLocale
 
   return {

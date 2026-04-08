@@ -23,19 +23,8 @@
 
 /* ============================================================
    CSS Variables — Thème dark
+   (géré uniquement via la classe .dark ajoutée par next-themes)
    ============================================================ */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #141413;
-    --foreground: #f0f0ee;
-    --foreground-muted: #9ca3af;
-    --primary: #6baf7b;
-    --primary-foreground: #0f1f14;
-    --card: #1f1f1d;
-    --card-border: #2d2d2b;
-  }
-}
 
 .dark {
   --background: #141413;
