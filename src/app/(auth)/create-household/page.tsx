@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export default function CreateHouseholdPage() {
-  const { data: session, status } = useSession()
+  const { data: session, status, update } = useSession()
   const router = useRouter()
   const [name, setName] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -47,6 +47,8 @@ export default function CreateHouseholdPage() {
       return
     }
 
+    // Refresh the JWT so householdId is available immediately
+    await update()
     router.push('/dashboard')
   }
 

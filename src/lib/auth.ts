@@ -55,12 +55,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       // On sign-in, `user` is populated — persist extra fields into the token
       if (user) {
         token.id = user.id
         token.householdId = (user as { householdId?: string | null }).householdId ?? null
         token.role = (user as { role?: string | null }).role ?? null
+      }
+      // On explicit update() call (e.g. after household creation), re-fetch from DB
+      if (trigger === 'update' && token.id) {
+        const membership = await prisma.householdMember.findFirst({
+          where: { userId: token.id as string },
+          orderBy: { joinedAt: 'asc' },
+        })
+        token.householdId = membership?.householdId ?? null
+        token.role = membership?.role ?? null
       }
       return token
     },
