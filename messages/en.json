@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred.",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "appName": "HomeInOne"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "••••••••",
+      "submitButton": "Sign in",
+      "submittingButton": "Signing in...",
+      "noAccount": "No account yet?",
+      "createAccount": "Create an account",
+      "invalidCredentials": "Invalid email or password."
+    },
+    "register": {
+      "title": "Create an account",
+      "nameLabel": "Your name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "••••••••",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "••••••••",
+      "submitButton": "Create my account",
+      "submittingButton": "Creating account...",
+      "alreadyAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "passwordMismatch": "Passwords do not match.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "autoLoginFailed": "Account created but automatic sign-in failed. Please sign in."
+    },
+    "createHousehold": {
+      "title": "Create your household",
+      "subtitle": "Welcome {name}! Give your household a name to get started.",
+      "nameLabel": "Household name",
+      "namePlaceholder": "The Doe Family",
+      "submitButton": "Create my household",
+      "submittingButton": "Creating..."
+    }
+  },
+  "dashboard": {
+    "greeting": "Hello, {name}",
+    "noHousehold": "You don't have a household yet.",
+    "createHousehold": "Create a household",
+    "householdLabel": "Household: {name}"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "home": "Home",
+    "calendar": "Calendar",
+    "notes": "Notes",
+    "maintenance": "Home",
+    "vehicles": "Vehicles",
+    "inventory": "Inventory"
+  },
+  "modules": {
+    "calendar": "Calendar",
+    "notes": "Notes & Lists",
+    "maintenance": "Home maintenance",
+    "vehicles": "Vehicles",
+    "inventory": "Inventory"
+  },
+  "header": {
+    "pageTitles": {
+      "dashboard": "Dashboard",
+      "calendar": "Calendar",
+      "notes": "Notes & Lists",
+      "maintenance": "Home maintenance",
+      "vehicles": "Vehicles",
+      "inventory": "Inventory"
+    },
+    "userMenuLabel": "User menu",
+    "defaultUser": "User",
+    "profile": "Profile",
+    "signOut": "Sign out"
+  }
+}

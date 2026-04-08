@@ -1,6 +1,10 @@
 import { auth } from '@/lib/auth'
+import createMiddleware from 'next-intl/middleware'
 import { NextResponse } from 'next/server'
 import type { NextAuthRequest } from 'next-auth'
+import { routing } from '@/i18n/routing'
+
+const intlMiddleware = createMiddleware(routing)
 
 export default auth((req: NextAuthRequest) => {
   const isAuthenticated = !!req.auth
@@ -11,7 +15,7 @@ export default auth((req: NextAuthRequest) => {
     return NextResponse.redirect(loginUrl)
   }
 
-  return NextResponse.next()
+  return intlMiddleware(req)
 })
 
 export const config = {

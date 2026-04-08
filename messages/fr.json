@@ -1,0 +1,89 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue.",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "back": "Retour",
+    "appName": "HomeInOne"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "emailLabel": "Adresse email",
+      "emailPlaceholder": "vous@exemple.fr",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "••••••••",
+      "submitButton": "Se connecter",
+      "submittingButton": "Connexion...",
+      "noAccount": "Pas encore de compte ?",
+      "createAccount": "Créer un compte",
+      "invalidCredentials": "Email ou mot de passe incorrect."
+    },
+    "register": {
+      "title": "Créer un compte",
+      "nameLabel": "Votre nom",
+      "namePlaceholder": "Jean Dupont",
+      "emailLabel": "Adresse email",
+      "emailPlaceholder": "vous@exemple.fr",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "••••••••",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "••••••••",
+      "submitButton": "Créer mon compte",
+      "submittingButton": "Création du compte...",
+      "alreadyAccount": "Déjà un compte ?",
+      "signIn": "Se connecter",
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+      "autoLoginFailed": "Compte créé mais connexion automatique échouée. Veuillez vous connecter."
+    },
+    "createHousehold": {
+      "title": "Créer votre foyer",
+      "subtitle": "Bienvenue {name} ! Donnez un nom à votre foyer pour commencer.",
+      "nameLabel": "Nom du foyer",
+      "namePlaceholder": "Famille Dupont",
+      "submitButton": "Créer mon foyer",
+      "submittingButton": "Création..."
+    }
+  },
+  "dashboard": {
+    "greeting": "Bonjour, {name}",
+    "noHousehold": "Vous n'avez pas encore de foyer.",
+    "createHousehold": "Créer un foyer",
+    "householdLabel": "Foyer : {name}"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "home": "Accueil",
+    "calendar": "Agenda",
+    "notes": "Notes",
+    "maintenance": "Logement",
+    "vehicles": "Véhicules",
+    "inventory": "Inventaire"
+  },
+  "modules": {
+    "calendar": "Agenda",
+    "notes": "Notes & Listes",
+    "maintenance": "Entretien logement",
+    "vehicles": "Véhicules",
+    "inventory": "Inventaire"
+  },
+  "header": {
+    "pageTitles": {
+      "dashboard": "Dashboard",
+      "calendar": "Agenda",
+      "notes": "Notes & Listes",
+      "maintenance": "Entretien logement",
+      "vehicles": "Véhicules",
+      "inventory": "Inventaire"
+    },
+    "userMenuLabel": "Menu utilisateur",
+    "defaultUser": "Utilisateur",
+    "profile": "Profil",
+    "signOut": "Se déconnecter"
+  }
+}

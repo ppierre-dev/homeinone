@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 import SessionProvider from "@/core/providers/SessionProvider";
 import { ThemeProvider } from "@/core/providers/ThemeProvider";
 import "./globals.css";
@@ -7,7 +9,7 @@ import "./globals.css";
 const dmSerifDisplay = DM_Serif_Display({
   variable: "--font-display-var",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400"],
 });
 
 const dmSans = DM_Sans({
@@ -27,21 +29,37 @@ export const metadata: Metadata = {
   description: "PWA modulaire de gestion du quotidien familial",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // getLocale() reads from the request context set by next-intl middleware /
+  // getRequestConfig. Falls back to defaultLocale when outside a request
+  // (e.g. _global-error static prerendering).
+  let locale = "fr";
+  try {
+    locale = await getLocale();
+  } catch {
+    // Outside of a request context — use default locale
+  }
+
   return (
     <html
-      lang="fr"
+      lang={locale}
       className={`${dmSerifDisplay.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>
-          <SessionProvider>{children}</SessionProvider>
-        </ThemeProvider>
+        {/* NextIntlClientProvider without explicit messages reads them from
+            the server context established by getRequestConfig in
+            src/i18n/request.ts. Messages are automatically forwarded to
+            client components that call useTranslations(). */}
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <SessionProvider>{children}</SessionProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
