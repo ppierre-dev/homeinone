@@ -1,4 +1,5 @@
 import { auth } from '@/lib/auth'
+import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -17,6 +18,12 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
+  const membership = await prisma.householdMember.findFirst({
+    where: { userId: session.user.id },
+    include: { household: true },
+    orderBy: { joinedAt: 'asc' },
+  })
+
   return (
     <div className="p-4 md:p-6 max-w-4xl mx-auto">
       {/* Message de bienvenue */}
@@ -24,7 +31,7 @@ export default async function DashboardPage() {
         <h2 className="font-display text-2xl text-foreground mb-1">
           Bonjour, {session.user.name ?? 'vous'} 👋
         </h2>
-        {!session.user.householdId && (
+        {!membership && (
           <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-[10px]">
             <p className="text-sm text-amber-700 dark:text-amber-400">
               Vous n&apos;avez pas encore de foyer.{' '}
@@ -33,6 +40,9 @@ export default async function DashboardPage() {
               </Link>
             </p>
           </div>
+        )}
+        {membership && (
+          <p className="text-sm text-foreground-muted">Foyer : {membership.household.name}</p>
         )}
       </div>
 
