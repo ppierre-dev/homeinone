@@ -9,8 +9,7 @@ services:
 
   app:
     build:
-      target: deps
-    command: npm run dev
+      target: dev
     environment:
       NODE_ENV: development
     volumes:

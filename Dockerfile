@@ -1,19 +1,25 @@
-# Stage 1 — Install dependencies
-FROM node:20-alpine AS deps
-
+# Stage base — image commune
+FROM node:20-alpine AS base
 RUN apk add --no-cache libc6-compat
-
 WORKDIR /app
 
+
+# Stage deps — installation des dépendances
+FROM base AS deps
 COPY package.json package-lock.json ./
 RUN npm ci --frozen-lockfile
 
 
-# Stage 2 — Build the application
-FROM node:20-alpine AS builder
+# Stage dev — pour docker-compose.dev.yml (hot reload)
+FROM base AS dev
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+EXPOSE 3000
+CMD ["npm", "run", "dev"]
 
-WORKDIR /app
 
+# Stage builder — build de production
+FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -26,7 +32,7 @@ ENV NODE_ENV=production
 RUN npm run build
 
 
-# Stage 3 — Production runner (lightweight)
+# Stage runner — image de production allégée (standalone)
 FROM node:20-alpine AS runner
 
 WORKDIR /app
