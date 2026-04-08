@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
+import { ThemeToggle } from '@/core/components/layout/ThemeToggle'
 
 const routeTitles: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -50,48 +51,53 @@ export function Header() {
       {/* Titre de la page */}
       <h1 className="font-display text-lg text-foreground">{title}</h1>
 
-      {/* Avatar + menu */}
-      <div className="relative" ref={menuRef}>
-        <button
-          type="button"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-semibold hover:bg-primary/30 transition-colors"
-          aria-label="Menu utilisateur"
-          aria-expanded={menuOpen}
-          aria-haspopup="true"
-        >
-          {userInitial}
-        </button>
+      {/* Actions header : toggle thème + menu utilisateur */}
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
 
-        {menuOpen && (
-          <div className="absolute right-0 mt-2 w-52 bg-card border border-card-border rounded-[14px] shadow-card py-1 z-50">
-            {/* Infos utilisateur */}
-            <div className="px-4 py-2.5 border-b border-card-border">
-              <p className="text-sm font-medium text-foreground truncate">
-                {session?.user?.name ?? 'Utilisateur'}
-              </p>
-              <p className="text-xs text-foreground-muted truncate">{session?.user?.email}</p>
-            </div>
+        {/* Avatar + menu */}
+        <div className="relative" ref={menuRef}>
+          <button
+            type="button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary text-sm font-semibold hover:bg-primary/30 transition-colors"
+            aria-label="Menu utilisateur"
+            aria-expanded={menuOpen}
+            aria-haspopup="true"
+          >
+            {userInitial}
+          </button>
 
-            {/* Actions */}
-            <div className="py-1">
-              <button
-                type="button"
-                className="w-full text-left px-4 py-2 text-sm text-foreground-muted hover:bg-card-border/40 hover:text-foreground transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
-                Profil
-              </button>
-              <button
-                type="button"
-                className="w-full text-left px-4 py-2 text-sm text-foreground-muted hover:bg-card-border/40 hover:text-foreground transition-colors"
-                onClick={() => signOut({ callbackUrl: '/login' })}
-              >
-                Se déconnecter
-              </button>
+          {menuOpen && (
+            <div className="absolute right-0 mt-2 w-52 bg-card border border-card-border rounded-[14px] shadow-card py-1 z-50">
+              {/* Infos utilisateur */}
+              <div className="px-4 py-2.5 border-b border-card-border">
+                <p className="text-sm font-medium text-foreground truncate">
+                  {session?.user?.name ?? 'Utilisateur'}
+                </p>
+                <p className="text-xs text-foreground-muted truncate">{session?.user?.email}</p>
+              </div>
+
+              {/* Actions */}
+              <div className="py-1">
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 text-sm text-foreground-muted hover:bg-card-border/40 hover:text-foreground transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Profil
+                </button>
+                <button
+                  type="button"
+                  className="w-full text-left px-4 py-2 text-sm text-foreground-muted hover:bg-card-border/40 hover:text-foreground transition-colors"
+                  onClick={() => signOut({ callbackUrl: '/login' })}
+                >
+                  Se déconnecter
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </header>
   )

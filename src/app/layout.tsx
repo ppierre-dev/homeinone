@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, DM_Sans, JetBrains_Mono } from "next/font/google";
 import SessionProvider from "@/core/providers/SessionProvider";
+import { ThemeProvider } from "@/core/providers/ThemeProvider";
 import "./globals.css";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -35,9 +36,12 @@ export default function RootLayout({
     <html
       lang="fr"
       className={`${dmSerifDisplay.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <SessionProvider>{children}</SessionProvider>
+        <ThemeProvider>
+          <SessionProvider>{children}</SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
